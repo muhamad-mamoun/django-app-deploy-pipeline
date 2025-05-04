@@ -31,8 +31,6 @@ Create CI/CD pipeline using jenkinsfile to deploy simple django web app as a mic
 
 
 
-
-
 # Steps to start django server
 
 
