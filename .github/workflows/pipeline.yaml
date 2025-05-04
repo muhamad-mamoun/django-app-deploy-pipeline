@@ -7,5 +7,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v2
+      
+      - name: Docker Setup QEMU
+        uses: docker/setup-qemu-action@v3.6.0
+      
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        
+      - name: Build image and push
+        run: |
+          docker build . -t ${{ secrets.DOCKER_USERNAME }}/django-app
+          docker push ${{ secrets.DOCKER_USERNAME }}/django-app
